@@ -68,8 +68,8 @@
                                 <!--end:Menu content-->
                             </div>
                             <!--end:Menu item-->
-   
- 
+
+
                             <!--begin:Menu item-->
                             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                                 <!--begin:Menu link-->
@@ -172,7 +172,7 @@
                             <div class="menu-item pt-5">
                                 <!--begin:Menu content-->
                                 <div class="menu-content">
-                                    <span class="menu-heading fw-bold text-uppercase fs-7">Help</span>
+                                    <span class="menu-heading fw-bold text-uppercase fs-7">الاعدادات</span>
                                 </div>
                                 <!--end:Menu content-->
                             </div>
