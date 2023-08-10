@@ -67,168 +67,59 @@
                                 </div>
                                 <!--end:Menu content-->
                             </div>
-                            <!--end:Menu item-->
 
 
-                            <!--begin:Menu item-->
-                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                            <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <span class="menu-link">
+                                <a class="menu-link" href="">
                                     <span class="menu-icon">
-                                        <i class="ki-duotone ki-menu fs-2">
+                                        <i class="ki-duotone ki-color-swatch fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
                                             <span class="path4"></span>
+                                            <span class="path5"></span>
+                                            <span class="path6"></span>
+                                            <span class="path7"></span>
+                                            <span class="path8"></span>
+                                            <span class="path9"></span>
+                                            <span class="path10"></span>
+                                            <span class="path11"></span>
+                                            <span class="path12"></span>
+                                            <span class="path13"></span>
+                                            <span class="path14"></span>
+                                            <span class="path15"></span>
+                                            <span class="path16"></span>
+                                            <span class="path17"></span>
+                                            <span class="path18"></span>
+                                            <span class="path19"></span>
+                                            <span class="path20"></span>
+                                            <span class="path21"></span>
                                         </i>
                                     </span>
-                                    <span class="menu-title">Asides</span>
-                                    <span class="menu-arrow"></span>
-                                </span>
-                                <!--end:Menu link-->
-                                <!--begin:Menu sub-->
-                                <div class="menu-sub menu-sub-accordion">
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../demo1/dist/asides/aside-1.html">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Filters</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../demo1/dist/asides/aside-2.html">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Segments</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Shipment History</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Courier Activity</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                    <!--begin:Menu item-->
-                                    <div class="menu-item">
-                                        <!--begin:Menu link-->
-                                        <a class="menu-link" href="../../demo1/dist/asides/aside-5.html">
-                                            <span class="menu-bullet">
-                                                <span class="bullet bullet-dot"></span>
-                                            </span>
-                                            <span class="menu-title">Calendar</span>
-                                        </a>
-                                        <!--end:Menu link-->
-                                    </div>
-                                    <!--end:Menu item-->
-                                </div>
-                                <!--end:Menu sub-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link"
-                                    href="https://preview.keenthemes.com/metronic8/demo1/layout-builder.html">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-abstract-13 fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Layout Builder</span>
+                                    <span class="menu-title"> أقسام العيادات </span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item pt-5">
-                                <!--begin:Menu content-->
-                                <div class="menu-content">
-                                    <span class="menu-heading fw-bold text-uppercase fs-7">الاعدادات</span>
-                                </div>
-                                <!--end:Menu content-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
+
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link"
-                                    href="https://preview.keenthemes.com/html/metronic/docs/base/utilities"
-                                    target="_blank">
+                                <a class="menu-link" href="">
                                     <span class="menu-icon">
-                                        <i class="ki-duotone ki-rocket fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Components</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="https://preview.keenthemes.com/html/metronic/docs"
-                                    target="_blank">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-abstract-26 fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </span>
-                                    <span class="menu-title">Documentation</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link"
-                                    href="https://preview.keenthemes.com/html/metronic/docs/getting-started/changelog"
-                                    target="_blank">
-                                    <span class="menu-icon">
-                                        <i class="ki-duotone ki-code fs-2">
+                                        <i class="ki-duotone ki-address-book fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
-                                            <span class="path4"></span>
                                         </i>
                                     </span>
-                                    <span class="menu-title">Changelog v8.2.0</span>
+                                    <span class="menu-title"> الاطباء </span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
+
                             <!--end:Menu item-->
+
+
                         </div>
                         <!--end::Menu-->
                     </div>
@@ -239,11 +130,11 @@
             <!--end::sidebar menu-->
             <!--begin::Footer-->
             <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-                <a href="https://preview.keenthemes.com/html/metronic/docs"
+                <a href=""
                     class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100"
                     data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
                     title="200+ in-house components and 3rd-party plugins">
-                    <span class="btn-label">Docs & Components</span>
+                    <span class="btn-label">زيارة الموقع الالكتروني </span>
                     <i class="ki-duotone ki-document btn-icon fs-2 m-0">
                         <span class="path1"></span>
                         <span class="path2"></span>
