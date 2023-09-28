@@ -41,4 +41,13 @@ class AuthController extends Controller
             return redirect()->back();
         }
     }
+
+
+
+    public function logout(Request $request)
+    {
+        auth('user')->logout();
+        $request->session()->invalidate();
+        return redirect()->route('login');
+    }
 }

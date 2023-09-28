@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('phone');
-            $table->string('time');
-            $table->string('date');
-            $table->string('category');
-            $table->string('name_doctor');
+            $table->date('summaryDate');
+            $table->string('summaryDay');
+            $table->string('summaryDepartment');
+            $table->string('summaryDoctor');
+            $table->string('summaryTime');
+            $table->string('firstName');
+            $table->string('middleName')->nullable();
+            $table->string('lastName');
+            $table->string('idNumber');
+            $table->string('idType');
+            $table->string('phoneNumber');
+            $table->text('image'); // اسم الصورة في الجدول
+            $table->boolean('readable')->default(0);
             $table->timestamps();
         });
     }

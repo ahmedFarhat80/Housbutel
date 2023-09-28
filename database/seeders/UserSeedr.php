@@ -14,10 +14,10 @@ class UserSeedr extends Seeder
      */
     public function run(): void
     {
-        $password = Hash::make("123456");
+        $password = Hash::make("meshal6616");
         User::query()->create([
             'name' => "مشعل الهندي",
-            'email' => "admin@admin.com",
+            'email' => "meshal95@eng.com",
             "password" => "$password",
         ]);
     }

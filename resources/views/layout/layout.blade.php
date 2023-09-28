@@ -41,6 +41,10 @@
         }
     </style>
     @yield('css')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -86,18 +90,26 @@
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                     <!--begin::Content wrapper-->
                     <div class="d-flex flex-column flex-column-fluid">
-                        @yield('content')
+                        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+                            <div id="kt_app_content" class="app-content  flex-column-fluid ">
+                                <div  id="kt_app_content_container" class="app-container  container-xxl">
+
+                                    @yield('content')
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!--end::Content wrapper-->
-                    <!--begin::Footer-->
-                    @include('layout.footer')
+
                     <!--end::Footer-->
                 </div>
                 <!--end:::Main-->
             </div>
             <!--end::Wrapper-->
+            @include('layout.footer')
         </div>
         <!--end::Page-->
+
     </div>
     <!--end::App-->
     <!--begin::Drawers-->
@@ -5156,6 +5168,21 @@
     <script src="{{ asset('Backend/assets/js/custom/utilities/modals/users-search.js') }}"></script> --}}
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        var menuItems = document.querySelectorAll(".menu-link");
+    
+        // مقارنة عناوين الروابط وإضافة الكلاس "active" إلى العنصر المناسب
+        menuItems.forEach(function(item) {
+            var link = item;
+            if (link && link.href === window.location.href) {
+                item.closest(".menu-link").classList.add("active");
+            }
+        });
+    </script>
+    
     @yield('js')
 </body>
 <!--end::Body-->

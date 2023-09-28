@@ -5,10 +5,7 @@
         <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
             <!--begin::Logo image-->
             <a href="">
-                <img alt="Logo" src="{{ asset('Backend/assets/media/logos/default-dark.svg') }}"
-                    class="h-25px app-sidebar-logo-default" />
-                <img alt="Logo" src="{{ asset('Backend/assets/media/logos/default-small.svg') }}"
-                    class="h-20px app-sidebar-logo-minimize" />
+                مشعل الهندي
             </a>
 
             <div id="kt_app_sidebar_toggle"
@@ -41,7 +38,7 @@
                         <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6"
                             id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
                             <!--begin:Menu item-->
-                            <div class="menu-item">
+                            {{-- <div class="menu-item">
                                 <!--begin:Menu link-->
                                 <a class="menu-link" href="">
                                     <span class="menu-icon">
@@ -55,7 +52,7 @@
                                     <span class="menu-title">دفقة القيادة</span>
                                 </a>
                                 <!--end:Menu link-->
-                            </div>
+                            </div> --}}
 
 
                             <!--end:Menu item-->
@@ -71,7 +68,7 @@
 
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('category.index') }}">
                                     <span class="menu-icon">
                                         <i class="ki-duotone ki-color-swatch fs-2">
                                             <span class="path1"></span>
@@ -104,7 +101,7 @@
 
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('doctor.index') }}">
                                     <span class="menu-icon">
                                         <i class="ki-duotone ki-address-book fs-2">
                                             <span class="path1"></span>
@@ -119,6 +116,20 @@
 
                             <!--end:Menu item-->
 
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ url('/create') }}">
+                                    <span class="menu-icon">
+                                        <i class="ki-duotone ki-address-book fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </span>
+                                    <span class="menu-title"> الحجوزات </span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
 
                         </div>
                         <!--end::Menu-->
@@ -130,7 +141,8 @@
             <!--end::sidebar menu-->
             <!--begin::Footer-->
             <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
-                <a href=""
+                <a href="{{ route('logout') }}" type="button" class="btn btn-danger mb-5 w-100">تسجيل الخروج</a>
+                <a href="/"
                     class="btn btn-flex flex-center btn-custom btn-primary overflow-hidden text-nowrap px-0 h-40px w-100"
                     data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click"
                     title="200+ in-house components and 3rd-party plugins">
@@ -143,3 +155,4 @@
             </div>
             <!--end::Footer-->
         </div>
+    </div>

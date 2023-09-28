@@ -74,12 +74,9 @@
                 <div class="d-flex flex-center flex-lg-start flex-column">
                     <!--begin::Logo-->
                     <a href="" class="mb-7">
-                        <img alt="Logo" src="{{ asset('Backend/assets/media/logos/custom-3.svg') }}" />
+                        <img class="w-50" alt="Logo" src="{{ asset('2.png') }}" />
                     </a>
                     <!--end::Logo-->
-                    <!--begin::Title-->
-                    <h2 class="text-white fw-normal m-0">Branding tools designed for your business</h2>
-                    <!--end::Title-->
                 </div>
                 <!--begin::Aside-->
             </div>
@@ -90,10 +87,13 @@
                 <!--begin::Card-->
                 <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
                     <!--begin::Wrapper-->
+
                     <div class="d-flex flex-center flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
                         <!--begin::Form-->
+                        <h1 class="text-dark fw-bolder mb-3 text-center"> ادارة نظام حجز المواعيد </h1>
+
                         <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"
-                            action="{{ route('login') }}" method="post">
+                            action="{{ route('login_pass') }}" method="post">
                             <!--begin::Heading-->
                             @if (session('message'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -102,11 +102,11 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-
                             @csrf
                             <div class="text-center mb-11">
                                 <!--begin::Title-->
-                                <h1 class="text-dark fw-bolder mb-3">تسجيل الدخول </h1>
+
+                                <h2 class="text-dark fw-bolder mb-3">تسجيل الدخول </h2>
                                 <!--end::Title-->
                                 <!--begin::Subtitle-->
                                 <div class="text-gray-500 fw-semibold fs-6">لوحة تحكم المسؤول </div>
