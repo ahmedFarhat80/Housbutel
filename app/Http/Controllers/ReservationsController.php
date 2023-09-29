@@ -44,7 +44,8 @@ class ReservationsController extends Controller
     public function create()
     {
         $tables = Reservations::orderBy('created_at', 'desc')->get();
-        return response()->view('backend.table', ['tables' => $tables]);
+        $Category = Category::all();
+        return response()->view('backend.table', ['tables' => $tables, 'Category' => $Category]);
     }
 
     /**
@@ -232,5 +233,28 @@ class ReservationsController extends Controller
     public function check_time()
     {
         //
+    }
+
+    public function filter(Request $request)
+    {
+
+        $validator = $request->validate(
+            [
+                'sectionFilter' => 'required|string',
+                'statusFilter' => 'required|string',
+            ]
+        );
+
+        if ($validator) {
+
+            if (($request->get('sectionFilter') == "all") && ($request->get('statusFilter') == "all")) {
+                $tables = Reservations::orderBy('created_at', 'desc')->get();
+                $Category = Category::all();
+                return response()->view('backend.table', ['tables' => $tables, 'Category' => $Category]);
+            }
+        } else {
+            session()->flash('message', 'هناك أخطاء في البيانات المدخلة');
+            return redirect()->back();
+        }
     }
 }

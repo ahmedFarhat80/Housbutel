@@ -33,10 +33,18 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">
-                                        الاسم
+                                        اسم الطبيب بالعربية
                                     </label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="قم بادخال اسم الطبيب ">
+                                        placeholder=" قم بادخال اسم الطبيب بالعربية">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">
+                                        اسم الطبيب بالانجليزية
+                                    </label>
+                                    <input type="text" class="form-control" id="name_en" name="name_en"
+                                        placeholder="قم بادخال اسم الطبيب بالانجليزية ">
                                 </div>
 
                                 <div class="fv-row mb-8">
@@ -145,7 +153,8 @@
                     <thead>
                         <tr class="fw-bold text-muted bg-light">
                             <th class="min-w-60px rounded-start">#</th>
-                            <th class="min-w-60px">الاسم</th>
+                            <th class="min-w-60px">الاسم العربي </th>
+                            <th class="min-w-60px">الاسم الانجليزي </th>
                             <th class="min-w-60px">القسم التابع</th>
                             <th class="min-w-60px"> اجراءات اخرى</th>
                         </tr>
@@ -170,6 +179,13 @@
                                         {{ $d->name }}
                                     </a>
                                 </td>
+
+                                <td>
+                                    <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
+                                        {{ $d->name_en }}
+                                    </a>
+                                </td>
+
                                 <td>
                                     <a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">
                                         {{ $d->category->name }}
@@ -212,13 +228,26 @@
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="name" class="form-label">
-                                                        الاسم
+                                                    <label for="name{{ $d->id }}" class="form-label">
+                                                        اسم الطبيب بالعربية
                                                     </label>
                                                     <input type="text" class="form-control"
                                                         id="name{{ $d->id }}" name="name{{ $d->id }}"
-                                                        placeholder="قم بادخال اسم القسم " value="{{ $d->name }}">
+                                                        placeholder="قم بادخال اسم الطبيب باللغه العربية "
+                                                        value="{{ $d->name }}">
                                                 </div>
+
+                                                <div class="mb-3">
+                                                    <label for="name_en{{ $d->id }}" class="form-label">
+                                                        اسم الطبيب بالانجليزية
+                                                    </label>
+                                                    <input type="text" class="form-control"
+                                                        id="name_en{{ $d->id }}"
+                                                        name="name_en{{ $d->id }}"
+                                                        placeholder="قم بادخال اسم الطبيب باللغه الانجليزية "
+                                                        value="{{ $d->name_en }}">
+                                                </div>
+
                                                 <div class="fv-row mb-8">
                                                     <!--begin::Label-->
                                                     <label class="required fs-6 fw-semibold mb-2">
@@ -246,7 +275,6 @@
                                                             </option>
                                                         @endif
                                                     @endforeach
-
                                                 </select>
                                                 <!--end::Input-->
                                             </div>
@@ -257,7 +285,6 @@
                                                 @php
                                                     $days = \App\Models\Day::where('doctor_id', $d->id)->first(); // استعلم عن أيام الدوام باستخدام Eloquent
                                                 @endphp
-
                                                 <div class="form-check">
                                                     <input class="form-check-input mt-2 mb-2" type="checkbox"
                                                         value="السبت" id="flexCheckDefault8{{ $d->id }}"
@@ -363,6 +390,7 @@
     function store() {
         let formData = new FormData();
         formData.append('name', document.getElementById('name').value);
+        formData.append('name_en', document.getElementById('name_en').value);
         formData.append('select', document.getElementById('select').value);
 
         if (document.getElementById('flexCheckDefault1').checked) {
@@ -412,6 +440,7 @@
         function update{{ $cat->id }}(id) {
             var data = {
                 name: document.getElementById("name{{ $cat->id }}").value,
+                name_en: document.getElementById("name_en{{ $cat->id }}").value,
                 select: document.getElementById("select{{ $cat->id }}").value,
             };
 
@@ -490,26 +519,28 @@
     }
 </script>
 
-
 <script>
-    // دالة للبحث داخل الجدول
+    // دالة للبحث داخل الجدول بناءً على الاسم بالعربي والإنجليزي
     function searchTable() {
-        var input, filter, table, tr, td, i, txtValue;
+        var input, filter, table, tr, td, i, txtValueArabic, txtValueEnglish;
         input = document.getElementById("searchInput"); // استدعاء عنصر الإدخال
         filter = input.value.toUpperCase(); // تحويل النص إلى أحرف كبيرة للمقارنة
         table = document.getElementById("dataTable"); // استدعاء الجدول
         tr = table.getElementsByTagName("tr"); // الحصول على صفوف الجدول
 
         // البحث في كل صف وإخفاء أولئك الذين لا تتطابق مع معايير البحث
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1]; // العمود الذي تريد البحث فيه (اسم)
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
+        for (i = 1; i < tr.length; i++) { // ابتداءً من 1 لتجنب عنوان الجدول
+            td = tr[i].getElementsByTagName("td"); // الحصول على جميع الأعمدة في الصف
+
+            // البحث في العمود الثاني (الاسم بالعربي) والعمود الثالث (الاسم بالإنجليزي)
+            txtValueArabic = td[1].textContent || td[1].innerText;
+            txtValueEnglish = td[2].textContent || td[2].innerText;
+
+            if (txtValueArabic.toUpperCase().indexOf(filter) > -1 || txtValueEnglish.toUpperCase().indexOf(filter) > -
+                1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
             }
         }
     }

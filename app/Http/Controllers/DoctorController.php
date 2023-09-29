@@ -36,7 +36,8 @@ class DoctorController extends Controller
     {
 
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3|max:30',
+            'name' => 'required|string|min:3|max:100',
+            'name_en' => 'required|string|min:3|max:100',
             'select' => 'required|numeric',
             "flexCheckDefault1" => 'nullable',
             "flexCheckDefault2" => 'nullable',
@@ -64,6 +65,7 @@ class DoctorController extends Controller
 
             $Doctor = new Doctor();
             $Doctor->name = $request->get('name');
+            $Doctor->name_en = $request->get('name_en');
             $Doctor->category_id = $request->get('select');
             $day = new Day();
             $isSavedDoctor =  $Doctor->save();
@@ -117,7 +119,8 @@ class DoctorController extends Controller
     public function update(Request $request, Doctor $doctor)
     {
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3|max:30',
+            'name' => 'required|string|min:3|max:100',
+            'name_en' => 'required|string|min:3|max:100',
             'select' => 'required|numeric',
             "flexCheckDefault8" => 'nullable',
             "flexCheckDefault9" => 'nullable',
@@ -131,6 +134,7 @@ class DoctorController extends Controller
         if (!$validator->fails()) {
 
             $doctor->name = $request->get('name');
+            $doctor->name_en = $request->get('name_en');
             $doctor->category_id = $request->get('select');
             $isSaved =  $doctor->save();
 

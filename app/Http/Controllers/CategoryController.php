@@ -33,7 +33,8 @@ class CategoryController extends Controller
     {
 
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3|max:30',
+            'name' => 'required|string|min:3|max:100',
+            "name_en" => 'required|string|min:3|max:100',
             'time' => 'required|numeric',
             'date' => 'nullable',
         ]);
@@ -41,6 +42,7 @@ class CategoryController extends Controller
         if (!$validator->fails()) {
             $category = new Category();
             $category->name = $request->get('name');
+            $category->name_en = $request->get('name_en');
             $category->time = $request->get('time');
             if ($request->get('date') != null) {
                 $category->Close_date = $request->get('date');
@@ -79,13 +81,15 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3|max:30',
+            'name' => 'required|string|min:3|max:100',
+            "name_en" => 'required|string|min:3|max:100',
             'time' => 'required|numeric',
             'date' => 'nullable',
         ]);
         $category = Category::find($id);
         if (!$validator->fails()) {
             $category->name = $request->get('name');
+            $category->name_en = $request->get('name_en');
             $category->time = $request->get('time');
             if ($request->get('date') != null) {
                 $category->Close_date = $request->get('date');
