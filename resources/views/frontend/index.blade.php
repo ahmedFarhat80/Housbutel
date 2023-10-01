@@ -17,8 +17,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/style.css') }}">
+    @php
+        $language = session('lang');
+    @endphp
 
-    @if (session()->has('lang') == 'en')
+    @if ($language == 'en')
         <style>
             *,
             .vertical-tabs .nav-link {
@@ -30,6 +33,15 @@
 </head>
 
 <body>
+    <div class="text-center mt-4">
+        @if ($language == 'en')
+            <a href="{{ url('/lang/ar') }}" class="btn btn-secondary">{{ __('عربي') }}</a>
+        @else
+            <a href="{{ url('/lang/en') }}" class="btn btn-secondary">{{ __('English') }}</a>
+        @endif
+
+    </div>
+
     <div class="container  mb-4">
         <img class="mb-4" src="{{ asset('2.png') }}" width="20%" style="display: block; margin: 0 auto;"
             alt="">
@@ -56,24 +68,35 @@
             </div>
             <div class="card-body">
                 <div class="search-box">
-                    <input type="text" class="form-control" id="searchInput" placeholder="{{ __('Find a section') }}"
-                        oninput="searchDepartments()">
+
+                    <input type="text" class="form-control" id="searchInput"
+                        placeholder="{{ __('Find a section') }}" oninput="searchDepartments()">
                     <button class="btn btn-primary" onclick="searchDepartments()">{{ __('search') }}</button>
                 </div>
                 <div class="vertical-tabs">
                     <ul class="nav flex-column" id="clinicTabs" role="tablist">
-                        @foreach ($Category as $cat)
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="surgery-tab{{ $cat->id }}" data-bs-toggle="tab"
-                                    href="#surgery{{ $cat->id }}" role="tab"
-                                    aria-controls="surgery{{ $cat->id }}" aria-selected="true">
-                                    {{ $cat->name }}
-                                </a>
-                            </li>
-                            <!-- إضافة العنصر المخفي لتخزين القيمة المخصصة لفاصل الزمني -->
-                            {{-- <input type="hidden" id="timeInterval{{ $cat->id }}" value="{{ $cat->timeInterval }}"> --}}
-                        @endforeach
+                        @if ($language == 'en')
 
+                            @foreach ($Category as $cat)
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="surgery-tab{{ $cat->id }}" data-bs-toggle="tab"
+                                        href="#surgery{{ $cat->id }}" role="tab"
+                                        aria-controls="surgery{{ $cat->id }}" aria-selected="true">
+                                        {{ $cat->name_en }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        @else
+                            @foreach ($Category as $cat)
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="surgery-tab{{ $cat->id }}" data-bs-toggle="tab"
+                                        href="#surgery{{ $cat->id }}" role="tab"
+                                        aria-controls="surgery{{ $cat->id }}" aria-selected="true">
+                                        {{ $cat->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
 
@@ -84,7 +107,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="doctors-section">
-                                        <h4 class="text-center mb-4">اختر طبيبًا</h4>
+                                        <h4 class="text-center mb-4">{{ __('Choose a doctor') }}</h4>
                                         <div class="search-box">
                                             <input type="text" class="form-control" id="searchDoctorsInput"
                                                 placeholder="{{ __('Find a doctor') }}" oninput="searchDoctors()">
@@ -92,17 +115,34 @@
                                                 onclick="searchDoctors()">{{ __('search') }}</button>
                                         </div>
                                         <ul class="doctors-list">
-                                            @foreach ($doctors as $doc)
-                                                @if ($doc->category_id == $cat->id)
-                                                    <li>
-                                                        <a href="#" onclick="selectDoctor('{{ $doc->name }}')"
-                                                            class="doctor-option">
-                                                            <span class="doctor-name">{{ $doc->name }}</span>
-                                                            <span class="doctor-icon">&#10003;</span>
-                                                        </a>
-                                                    </li>
-                                                @endif
-                                            @endforeach
+                                            @if ($language == 'en')
+                                                @foreach ($doctors as $doc)
+                                                    @if ($doc->category_id == $cat->id)
+                                                        <li>
+                                                            <a href="#"
+                                                                onclick="selectDoctor('{{ $doc->name_en }}')"
+                                                                class="doctor-option">
+                                                                <span class="doctor-name">{{ $doc->name_en }}</span>
+                                                                <span class="doctor-icon">&#10003;</span>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                @foreach ($doctors as $doc)
+                                                    @if ($doc->category_id == $cat->id)
+                                                        <li>
+                                                            <a href="#"
+                                                                onclick="selectDoctor('{{ $doc->name }}')"
+                                                                class="doctor-option">
+                                                                <span class="doctor-name">{{ $doc->name }}</span>
+                                                                <span class="doctor-icon">&#10003;</span>
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
                                         </ul>
                                     </div>
                                 </div>
@@ -175,7 +215,7 @@
 
 
                         <div class="form-group mb-3" id="dream" style="display: none;">
-                            <label for="idNumber"> تاريخ انتهاء البطاقة </label>
+                            <label for="idNumber"> {{ __('Card expiry date') }} </label>
                             <div class="expiry-date">
                                 <label for="day" class="p-2">{{ __('day') }}: </label>
                                 <input class="form-control" type="number" id="day" name="day"
@@ -220,7 +260,8 @@
 
             <!-- زر تأكيد الحجز -->
             <div class="text-center mt-4">
-                <button class="btn btn-custom w-100" onclick="confirmReservation()">
+                <button class="btn btn-custom w-100" onclick="confirmReservation()"
+                    style="text-align: center !important">
                     {{ __('reservation confirmation') }}
                 </button>
             </div>
@@ -330,7 +371,7 @@
 
 
 
-    @if (session()->has('lang') == 'en')
+    @if ($language == 'en')
         <script>
             function updateSummary() {
                 var summaryDateElement = document.getElementById("summaryDate");
@@ -486,10 +527,10 @@
                     const idNumberValue = formData.get('idNumber');
                     Swal.fire({
                         icon: 'success',
-                        title: 'تم بنجاح!',
-                        text: 'تم تأكيد الحجز بنجاح وتم تخزين البيانات في قاعدة البيانات.',
+                        title: "{{ __('done successfully!') }}",
+                        text: "{{ __('Your reservation has been confirmed successfully. Thank you for using the Military Hospital electronic reservation system') }}",
                         confirmButtonColor: '#54350a',
-                        confirmButtonText: 'حسنًا'
+                        confirmButtonText: "{{ __('OK') }}"
                     }).then((result) => {
                         // استخراج قيمة idNumber من البيانات المُستجاب عليها
                         if (result.isConfirmed) {
@@ -511,9 +552,9 @@
                             icon: 'error',
                             title: 'خطأ!',
                             text: JSON.stringify(error.response.data),
-                            footer: 'حدث خطأ أثناء تأكيد الحجز. الرجاء المحاولة مرة أخرى.', // استخدام رسالة الخطأ المسترجعة من الباك إند
+                            footer: "{{ __('An error occurred while confirming your reservation. Please try again or contact Captain Mishaal Al-Hindi 51197963') }}", // استخدام رسالة الخطأ المسترجعة من الباك إند
                             confirmButtonColor: '#54350a',
-                            confirmButtonText: 'حسنًا'
+                            confirmButtonText: "{{ __('OK') }}"
                         });
 
                     } else {
@@ -522,9 +563,9 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'خطأ!',
-                            text: 'حدث خطأ أثناء التواصل مع الخادم. الرجاء المحاولة مرة أخرى.',
+                            text: "{{ __('An error occurred while communicating with the server. Please refresh the page and try again - or contact Captain Mishaal Al-Hindi 51197963') }}",
                             confirmButtonColor: '#54350a',
-                            confirmButtonText: 'حسنًا'
+                            confirmButtonText: "{{ __('OK') }}"
                         });
                     }
                 });

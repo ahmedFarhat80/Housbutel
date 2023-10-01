@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="ar_KU" />
     <meta property="og:type" content="article" />
-
     <meta property="og:site_name" content="المستشفى العسكري الكويتي لحجز المواعيد الطبية" />
 
     <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
@@ -5173,7 +5172,7 @@
 
     <script>
         var menuItems = document.querySelectorAll(".menu-link");
-    
+
         // مقارنة عناوين الروابط وإضافة الكلاس "active" إلى العنصر المناسب
         menuItems.forEach(function(item) {
             var link = item;
@@ -5182,7 +5181,7 @@
             }
         });
     </script>
-    
+
     @yield('js')
 </body>
 <!--end::Body-->

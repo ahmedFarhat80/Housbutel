@@ -45,6 +45,7 @@ Route::prefix('/')->middleware('auth:user')->group(function () {
     Route::resources(['doctor' => DoctorController::class]);
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/show/{id}', [ReservationsController::class, 'show'])->name('show');
+    Route::get('/print-pdf', [ReservationsController::class, 'generatePDF']);
 });
 
 

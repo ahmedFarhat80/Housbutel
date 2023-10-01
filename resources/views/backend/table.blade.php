@@ -1,7 +1,56 @@
 @extends('layout.layout')
 
+@section('css')
+    <meta name="csrf-token" content="@csrf">
+
+    <style>
+        /* تحسين مظهر مربع الاختيار */
+        .rowCheckbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #007bff;
+            /* لون الحدود عندما لا يتم التحديد */
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            /* تمكين وضع العلامة بناءً على موقع مربع الاختيار */
+        }
+
+        /* تغيير لون مربع الاختيار عندما يتم التحديد */
+        .rowCheckbox:checked {
+            border-color: #007bff;
+            background-color: #007bff;
+            /* لون الخلفية عندما يتم التحديد */
+        }
+
+        /* تخصيص علامة الصح */
+        .rowCheckbox:after {
+            content: "\2713";
+            /* علامة الصح (علامة الصح اليونيكود) */
+            font-size: 16px;
+            /* حجم الخط لعلامة الصح */
+            color: #fff;
+            /* لون علامة الصح عندما يتم التحديد */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* لوضع علامة الصح في الوسط */
+            opacity: 0;
+            /* لإخفاء علامة الصح عندما لا يتم التحديد */
+        }
+
+        /* إظهار علامة الصح عندما يتم التحديد */
+        .rowCheckbox:checked:after {
+            opacity: 1;
+        }
+    </style>
+@endsection
 
 @section('content')
+
+
     <div class="card mb-6">
         <div class="card-body pt-9 pb-0">
             <!--begin::Details-->
@@ -55,6 +104,7 @@
 
 
 
+
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
@@ -65,6 +115,12 @@
                     هنا يتم عرض الحجوزات
                 </span>
             </h3>
+            <div class="mb-3 w-50">
+                <label for="printButton" class="form-label" style="visibility: hidden">s</label>
+                <button type="button" id="printButton" class="btn btn-success btn-lg w-100" onclick="printSelected()">
+                    طباعة الـ PDF المحددة
+                </button>
+            </div>
 
         </div>
         <!--end::Header-->
@@ -82,6 +138,9 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted bg-light">
+                            <th class="min-w-60px">
+                                <input class="rowCheckbox" type="checkbox" id="selectAll" onclick="toggleAllCheckboxes()">
+                            </th>
                             <th class="min-w-60px rounded-start">#</th>
                             <th class="min-w-60px">الاسم</th>
                             <th class="min-w-60px">تابع للقسم</th>
@@ -95,7 +154,11 @@
                     <!--begin::Table body-->
                     <tbody>
                         @foreach ($tables as $table)
-                            <tr>
+                            <tr data-id="{{ $table->id }}">
+
+                                <td>
+                                    <input type="checkbox" class="rowCheckbox">
+                                </td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex justify-content-start flex-column">
@@ -149,6 +212,8 @@
                                 </td>
                             </tr>
 
+
+
                     </tbody>
 
             </div>
@@ -191,6 +256,7 @@
             }
         }
     </script>
+
     <script>
         function applyFilters() {
             var sectionFilter = document.getElementById("sectionFilter").value;
@@ -203,9 +269,9 @@
 
             for (var i = 1; i < rows.length; i++) { // بدء الحلقة من 1 لتجاوز الصف الرأسي
                 var row = rows[i];
-                var sectionCell = row.cells[2]; // الخلية التي تحتوي على اسم القسم
-                var statusCell = row.cells[5]; // الخلية التي تحتوي على حالة الـ PDF
-                var dateCell = row.cells[3]; // الخلية التي تحتوي على تاريخ الحجز
+                var sectionCell = row.cells[3]; // الخلية التي تحتوي على اسم القسم
+                var statusCell = row.cells[6]; // الخلية التي تحتوي على حالة الـ PDF
+                var dateCell = row.cells[2]; // الخلية التي تحتوي على تاريخ الحجز
 
                 var sectionValue = sectionCell.textContent.trim();
                 var statusValue = statusCell.textContent.trim();
@@ -224,6 +290,50 @@
                     row.style.display = "none";
                 }
             }
+        }
+    </script>
+    <script>
+        function toggleAllCheckboxes() {
+            var checkboxes = document.querySelectorAll('.rowCheckbox');
+            var selectAllCheckbox = document.getElementById('selectAll');
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                var row = checkboxes[i].closest('tr');
+                if (row.style.display !== 'none') {
+                    checkboxes[i].checked = selectAllCheckbox.checked;
+                }
+            }
+        }
+    </script>
+
+
+
+    <script>
+        function printSelected() {
+            // جمع الـ IDs الخاصة بالصفوف المحددة
+            var selectedIds = [];
+            var checkboxes = document.querySelectorAll('.rowCheckbox');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    // استخراج الـ ID من العنصر الأب للصف (على سبيل المثال، قم بتعيين ID الصف كخاصية data-id في الصف)
+                    var rowId = checkbox.closest('tr').getAttribute('data-id');
+                    selectedIds.push(rowId);
+                }
+            });
+
+            // تصفية المصفوفة لإزالة القيم null
+            selectedIds = selectedIds.filter(function(id) {
+                return id !== null;
+            });
+
+            // تحويل المصفوفة إلى JSON
+            var selectedIdsJSON = JSON.stringify(selectedIds);
+
+            // بناء URL الخاص بالطلب GET بناءً على الـ IDs المحددة
+            var url = '/print-pdf?selectedIds=' + encodeURIComponent(selectedIdsJSON);
+
+            // إجراء طلب GET
+            window.location.href = url;
         }
     </script>
 @endsection

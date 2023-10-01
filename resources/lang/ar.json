@@ -30,5 +30,21 @@
     "Section": "القسم",
     "doctor": "الطبيب",
     "time": "الوقت",
-    "Find a doctor": "ابحث عن طبيب"
+    "Find a doctor": "ابحث عن طبيب",
+    "Card expiry date": "تاريخ انتهاء البطاقة",
+    "error_time": "هذا الوقت غير متاح الرجاء اختيار ساعة أخرى أو تاريخ آخر",
+    "error_Family": "حقول تاريخ انتهاء الباقة العائلية مطلوبة اجبارياً",
+    "error_day": "يرجى إدخال يوم صالح (1-31)",
+    "error_month": "يرجى إدخال شهر صالح (1-12)",
+    "error_year": "يرجى إدخال سنة صالحة (2023-2099)",
+    "not_available": "هذا الوقت غير متاح الرجاء اختيار تاريخ آخر حسب الأيام التالية: ",
+    "Successfully": "تم انشاء حجزك بنجاح - سيتم تحويلك الى صفحة معلومات الحجز بعد الضغط على موافق",
+    "Failed": "لقد حصل خطأ غير متوقع .. يمكنك التواصل مع نقيب مشعل الهندي 51197963",
+    "not_possible": "لا يمكن الحجز مرتين في نفس اليوم",
+    "Choose a doctor": "اختر طبيبًا",
+    "done successfully!": "تم الحجز بنجاح",
+    "Your reservation has been confirmed successfully. Thank you for using the Military Hospital electronic reservation system": "تم تأكيد الحجز بنجاح شكراً لاستعمالك نظام المستشفى العسكري للحجوزات الالكترونية ",
+    "OK": "تم",
+    "An error occurred while confirming your reservation. Please try again or contact Captain Mishaal Al-Hindi 51197963": "حدث خطأ أثناء تأكيد الحجز. يرجى المحاولة مرة أخرى أو التواصل مع النقيب مشعل الهندي 51197963",
+    "An error occurred while communicating with the server. Please refresh the page and try again - or contact Captain Mishaal Al-Hindi 51197963": "حدث خطأ أثناء التواصل مع الخادم. الرجاء تحديث الصفحة والمحاولة مرة أخرى - او التواصل مع النقيب مشعل الهندي 51197963"
 }

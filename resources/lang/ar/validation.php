@@ -89,7 +89,6 @@ return [
     'unique' => 'قيمة الحقل :attribute مُستخدمة من قبل',
     'uploaded' => 'فشل في تحميل الـ :attribute',
     'url' => 'صيغة الرابط :attribute غير صحيحة',
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -119,7 +118,7 @@ return [
     */
 
     'attributes' => [
-//        'name' => 'الاسم',
+        //        'name' => 'الاسم',
         'comment' => 'التعليق',
         'search' => 'البحث',
         'username' => 'اسم المُستخدم',

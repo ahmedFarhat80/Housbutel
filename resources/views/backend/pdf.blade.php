@@ -3,15 +3,15 @@
 
 <head>
     <!-- Meta Tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <meta name="author" content="ThemeMarch">
     <!-- Site Title -->
     <title>فاتورة طبية</title>
-    <link rel="stylesheet" href="{{ asset('pdf/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('pdf/css/style.css') }}">
+
 </head>
 
 <body>
@@ -142,11 +142,12 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="{{ asset('pdf/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('pdf/js/jspdf.min.js') }}"></script>
-        <script src="{{ asset('pdf/js/html2canvas.min.js') }}"></script>
-        <script src="{{ asset('pdf/js/main.js') }}"></script>
+    <script src="{{ asset('pdf/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('pdf/js/jspdf.min.js') }}"></script>
+    <script src="{{ asset('pdf/js/html2canvas.min.js') }}"></script>
+    <script src="{{ asset('pdf/js/main.js') }}"></script>
 
 </body>
 
